@@ -1,0 +1,68 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #0d0d0d;
+  padding: 1rem 2rem;
+
+  .logo img {
+    width: 120px;
+    height: auto;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+
+    a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+
+      &:hover {
+        color: #ff6f00;
+      }
+    }
+
+    .profile-menu {
+      position: relative;
+
+      .username {
+        color: #fff;
+        cursor: pointer;
+        font-weight: 500;
+      }
+
+      .dropdown {
+        display: none;
+        position: absolute;
+        top: 2rem;
+        right: 0;
+        background-color: #1a1a1a;
+        border: 1px solid #333;
+        border-radius: 6px;
+        padding: 0.5rem 0;
+        min-width: 150px;
+        z-index: 100;
+
+        a {
+          display: block;
+          padding: 0.5rem 1rem;
+          color: #ccc;
+          text-decoration: none;
+
+          &:hover {
+            background-color: #333;
+            color: #ff6f00;
+          }
+        }
+      }
+
+      &:hover .dropdown {
+        display: block;
+      }
+    }
+  }
+}
