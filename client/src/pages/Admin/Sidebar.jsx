@@ -10,6 +10,7 @@ const Sidebar = ({ setPage }) => {
         <li onClick={() => setPage('products')}>Products</li>
         <li onClick={() => setPage('users')}>Users</li>
         <li onClick={() => setPage('settings')}>Settings</li>
+        <li onClick={()=>setPage('add')}>Add</li>
       </ul>
     </div>
   );

@@ -10,13 +10,13 @@ import Shop from './pages/Shop/Shop';
 import Profile from './pages/profile/Profile';
 import SignIn from './pages/SignIn/SignIn';
 import Register from './pages/Register/Register';
-
+import Product from './pages/Product/Product';
 
 import Sidebar from './pages/Admin/Sidebar';
 import DashboardHome from './pages/Admin/DashboardHome';
 import Products from './pages/Admin/Products';
 import Users from './pages/Admin/Users';
-
+import Add from './pages/Admin/Add';
 import './pages/Admin/Admin.scss';
 
 const AdminLayout = ({ children, setPage }) => (
@@ -44,6 +44,7 @@ const App = () => {
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/signin" element={<SignIn />} />
                 <Route path="/register" element={<Register />} />
+                <Route  path="/product" element={<Product/>}/>
               </Routes>
               <Footer />
             </>
@@ -56,6 +57,7 @@ const App = () => {
           element={
             <AdminLayout setPage={setAdminPage}>
               {adminPage === 'dashboard' && <DashboardHome />}
+              {adminPage === 'add' && <Add />}
               {adminPage === 'products' && <Products />}
               {adminPage === 'users' && <Users />}
               {adminPage === 'settings' && <p className="content">Settings coming soon...</p>}

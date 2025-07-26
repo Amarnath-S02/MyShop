@@ -22,6 +22,7 @@ export const addProduct= async (req, res) => {
     const newProduct = new Product(req.body);
     const savedProduct = await newProduct.save();
     res.status(201).json(savedProduct);
+    console.log("POST /api/product/add hit");
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

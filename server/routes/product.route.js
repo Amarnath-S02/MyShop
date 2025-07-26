@@ -6,7 +6,7 @@ const router=express.Router();
 
 router.get('/all',getAllProducts);
 router.get('/:name',getData)
-router.post('/', addProduct); // ✅ This maps to POST /api/product
+router.post('/add', addProduct); // ✅ This maps to POST /api/product
 
 
 export default router;

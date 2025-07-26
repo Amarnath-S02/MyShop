@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import './Register.scss';
+import newRequest from '../../utils/newRequest';
+import "./Register.scss";
 
 const Register = () => {
-  const [formData, setFormData] = useState({
-    name: '',
+  const [userData, setUserData] = useState({
+    username: '',
     email: '',
     password: '',
     confirmPassword: ''
@@ -11,40 +12,63 @@ const Register = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    setUserData((prev) => ({ ...prev, [name]: value }));
   };
+ console.log("Sending to backend:", userData);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (formData.password !== formData.confirmPassword) {
-      alert('Passwords do not match');
-      return;
+    try {
+      const user = await newRequest.post("/register", userData);
+      console.log("User registered:", user);
+      alert("Registration successful!");
+    } catch (error) {
+      console.error("Registration error:", error.response?.data?.message || error.message);
+      alert(error.response?.data?.message || "Something went wrong!");
     }
-    console.log('Registered Data:', formData);
-    // API call can go here
   };
 
   return (
-    <div className="auth-form">
-      <h2>Register</h2>
-      <form onSubmit={handleSubmit}>
+    <div className='register-container'>
+      <h1>Create Account</h1>
+      <form onSubmit={handleSubmit} className='form'>
         <label>
-          Name:
-          <input type="text" name="name" value={formData.name} onChange={handleChange} required />
+          Username:
+          <input
+            type="text"
+            name="username"
+            value={userData.username}
+            onChange={handleChange}
+          />
         </label>
         <label>
           Email:
-          <input type="email" name="email" value={formData.email} onChange={handleChange} required />
+          <input
+            type="email"
+            name="email"
+            value={userData.email}
+            onChange={handleChange}
+          />
         </label>
         <label>
           Password:
-          <input type="password" name="password" value={formData.password} onChange={handleChange} required />
+          <input
+            type="password"
+            name="password"
+            value={userData.password}
+            onChange={handleChange}
+          />
         </label>
         <label>
           Confirm Password:
-          <input type="password" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} required />
+          <input
+            type="password"
+            name="confirmPassword"
+            value={userData.confirmPassword}
+            onChange={handleChange}
+          />
         </label>
-        <button type="submit">Register</button>
+        <button type="submit" className="submit">Create</button>
       </form>
     </div>
   );
